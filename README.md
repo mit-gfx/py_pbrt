@@ -17,5 +17,7 @@ conda activate py_pbrt
 ## Examples
 Navigate to the `python/` folder and run `python [example_name].py` where `example_name` can be the following:
 - `bunny`: A test scene for rendering a static Stanford bunny.
+<img src="asset/figure/bunny.jpg" alt="joint" style="display:block;margin-left:auto;margin-right:auto;width:50%;">
 - `joint`: Another test scene for rendering multiple meshes.
+<img src="asset/figure/joint.jpg" alt="joint" style="display:block;margin-left:auto;margin-right:auto;width:50%;">
 - `moving_bunny`: A script to show how to render a triangle mesh in motion and export a video.
