@@ -1,0 +1,6 @@
+external/pbrt_build
+python/__pycache__
+python/project_path.py
+python/.tmp
+python/*/*.png
+python/*/*.mp4
