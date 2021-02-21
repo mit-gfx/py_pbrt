@@ -84,7 +84,9 @@ class PbrtRenderer(object):
     # - texture_img: either a texture image name (assumed to be in asset/texture) or 'chkbd_[]_{}' where an integer in []
     #   indicates the number of grids in the checkerboard and a floating point number between 0 and 1 in {} specifies the
     #   darker color in the checkerboard.
-    def add_tri_mesh(self, tri_mesh, transforms=None, color=(.5, .5, .5), texture_img=None):
+    # - material: for advanced users, you can use this dictionary to specify materials as described in the pbrt-v3 user
+    #   guide: https://www.pbrt.org/fileformat-v3.html. If material is not None, it will supercede the 'color' argument.
+    def add_tri_mesh(self, tri_mesh, transforms=None, color=(.5, .5, .5), texture_img=None, material=None):
         tri_num = len(self.__tri_objects)
         tri_pbrt_short_name = 'tri_{:08d}.pbrt'.format(tri_num)
         tri_pbrt_name = self.__temporary_folder / tri_pbrt_short_name
@@ -109,8 +111,27 @@ class PbrtRenderer(object):
         r, g, b = color
 
         if texture_img is None:
-            lines.append('Material "plastic" "color Kd" [{} {} {}] "color Ks" [{} {} {}] "float roughness" .3\n'.format(
-                r, g, b, r, g, b))
+            if material is not None:
+                # For advanced users only --- it will supercede the color argument.
+                assert isinstance(material, dict)
+                name = material['name']
+                material_line = 'Material "' + name + '"'
+                for k, v in material.items():
+                    if k == 'name': continue
+                    if isinstance(v, float):
+                        material_line += ' "float {}" [{:f}]\n'.format(str(k), v)
+                    elif isinstance(v, bool):
+                        material_line += ' "bool {}" [{}]\n'.format(str(k), 'true' if v else 'false')
+                    else:
+                        # Assume it is a color type.
+                        color_v = ndarray(v)
+                        assert color_v.size == 3
+                        material_line += ' "color {}" [{:f} {:f} {:f}]\n'.format(str(k),
+                            color_v[0], color_v[1], color_v[2])
+                lines.append(material_line)
+            else:
+                lines.append('Material "plastic" "color Kd" [{} {} {}] "color Ks" [{} {} {}] "float roughness" .3\n'.format(
+                    r, g, b, r, g, b))
         elif 'chkbd' in texture_img:
             _, square_num, square_color = texture_img.split('_')
             square_num = int(square_num)

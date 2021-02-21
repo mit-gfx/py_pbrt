@@ -18,10 +18,10 @@ if __name__ == '__main__':
     options = {
         'file_name': str(output_folder / 'demo.png'),
         'light_map': 'uffizi-large.exr',
-        'sample': 16,
+        'sample': 32,
         'max_depth': 4,
-        'camera_pos': (0, -2, 0.8),
-        'camera_lookat': (0, 0, 0),
+        'camera_pos': (0.1, -.7, 1.5),
+        'camera_lookat': (0.1, 0, 0),
         'camera_up': (0, 0, 1),
     }
     renderer = PbrtRenderer(options)
@@ -32,19 +32,28 @@ if __name__ == '__main__':
             ('s', 0.1),
             ('t', (-0.3, 0, 0.2))
         ],
-        color=(.8, .2, .1))
+        # Advanced materials. See https://www.pbrt.org/fileformat-v3.html for the arguments.
+        material={
+            'name': 'metal',
+            'eta': (.6, .2, .1),
+            'k': (.1, .1, .1),
+            'roughness': 0.0001,
+        })
     renderer.add_tri_mesh(asset_folder / 'mesh/joint_parent.obj',
         transforms=[
             ('s', 0.1),
             ('t', (0.3, 0, 0.2))
         ],
-        color=(.1, .8, .2))
+        material={
+            'name': 'mirror',
+            'Kr': (.1, .7, .3)
+        })
     renderer.add_tri_mesh(asset_folder / 'mesh/phalanx.obj',
         transforms=[
             ('s', 0.1),
             ('t', (0, 0, 0.2))
         ],
-        color=(.1, .2, .8))
+        color=(.8, .2, .1))
 
     # Add the background.
     renderer.add_tri_mesh(asset_folder / 'mesh/curved_ground.obj',
