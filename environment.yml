@@ -1,0 +1,42 @@
+name: py_pbrt
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - _libgcc_mutex=0.1=main
+  - ca-certificates=2020.12.5=ha878542_0
+  - certifi=2020.12.5=py38h578d9bd_1
+  - freetype=2.10.4=h7ca028e_0
+  - imageio=2.9.0=py_0
+  - jpeg=9d=h36c2ea0_0
+  - ld_impl_linux-64=2.33.1=h53a641e_7
+  - libblas=3.9.0=8_openblas
+  - libcblas=3.9.0=8_openblas
+  - libedit=3.1.20191231=h14c3975_1
+  - libffi=3.3=he6710b0_2
+  - libgcc-ng=9.1.0=hdf63c60_0
+  - libgfortran-ng=7.5.0=h14aa051_18
+  - libgfortran4=7.5.0=h14aa051_18
+  - liblapack=3.9.0=8_openblas
+  - libopenblas=0.3.12=pthreads_hb3c22a3_1
+  - libpng=1.6.37=h21135ba_2
+  - libstdcxx-ng=9.1.0=hdf63c60_0
+  - libtiff=4.0.10=hc3755c2_1005
+  - lz4-c=1.9.2=he1b5a44_3
+  - ncurses=6.2=he6710b0_1
+  - numpy=1.18.1=py38h8854b6b_1
+  - olefile=0.46=pyh9f0ad1d_1
+  - openssl=1.1.1j=h27cfd23_0
+  - pillow=6.2.1=py38h6b7be26_0
+  - pip=21.0.1=py38h06a4308_0
+  - python=3.8.5=h7579374_1
+  - python_abi=3.8=1_cp38
+  - readline=8.1=h27cfd23_0
+  - setuptools=52.0.0=py38h06a4308_0
+  - sqlite=3.33.0=h62c20be_0
+  - tk=8.6.10=hbc83047_0
+  - wheel=0.36.2=pyhd3eb1b0_0
+  - xz=5.2.5=h7b6447c_0
+  - zlib=1.2.11=h7b6447c_3
+  - zstd=1.4.5=h9ceee32_0
+prefix: /home/taodu/libraries/miniconda3/envs/py_pbrt
